@@ -68,11 +68,18 @@ requirepass {Contraseña que quieras}
 ```
 
 ###### 🔹 Configurar PostgreSQL en el Terminal:
+```
+sudo -u postgres psql
+```
 
-- sudo -u postgres psql
-- ALTER USER postgres PASSWORD '{Contraseña para PostgreSQL}';
-- \q
+```
+ALTER USER postgres PASSWORD '{Contraseña para PostgreSQL}';
+```
 
+```
+\q
+```
+##### Para salir de Postgres, también puedes usar "Ctrl + D"
 Luego:
 
 - sudo -u postgres psql
