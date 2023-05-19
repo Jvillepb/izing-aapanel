@@ -245,10 +245,14 @@ quasar build -P -m pwa
 ## ▶️ CONFIGURAR PM2
 
 -------------------------------------------
-```
-pm2 startup ubuntu -u root
-```
 
+1. Ve a PM2 Manager dentro de AAPANEL
+  - Add Project
+  - BACKEND:
+    Startup file: /wwwroot/izing.io/backend/dist/server.js
+    Run dir: /wwwroot/izing.io/backend
+2. Mapear Frontend
+  - Ve a HOME, 
 -------------------------------------------
 
 ## ▶️ MAPEAR INSTANCIAS DE BACKEND Y FRONTEND
