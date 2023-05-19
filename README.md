@@ -15,21 +15,27 @@ timedatectl set-timezone America/Bogota && apt update && apt upgrade -y && apt i
 
 #### ▶️ ENTRAR A AAPANEL PARA CONFIGURARLO + POSTGRESQL + REDIS + RABBITMQ.
 
+-------------------------------------------
+
 ##### 🔹 Después de instalar Nginx 1.21 y hacer las configuraciones en "Settings", instalar:
 
-- PM2 Manager
-- RabbitMQ
-- Postgres
-- Redis
+  - PM2 Manager
+  - RabbitMQ
+  - Postgres
+  - Redis
 
+-------------------------------------------
 ##### 🔹 Instalar versión 14.21.1 de Node.
+
 ##### 🔹 Configurar versión 14.21.1 de Node en PM2 Manager.
 
+-------------------------------------------
+
 ##### 🔹 Ir a la configuración del Firewall del Sistema y abrir los puertos:
-> 5432 (PostgreSQL)
-> 6379 (Redis)
-> 5672 (RabbitMQ)
-> 8081 (Proxy Backend)
+  - 5432 (PostgreSQL)
+  - 6379 (Redis)
+  - 5672 (RabbitMQ)
+  - 8081 (Proxy Backend)
 
 ##### 🔹 Editar archivos:
 ➥ /etc/postgresql/14/main/postgresql.conf
