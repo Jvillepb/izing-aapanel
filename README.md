@@ -68,7 +68,7 @@ host all all 0.0.0.0/0
 
 ##### Modificar esta línea:
 ```
-#requirepass [Acá va la contraseña]
+#requirepass foobared
 ```
 
 ##### Así👇
