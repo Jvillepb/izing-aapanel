@@ -2,9 +2,9 @@
 Cómo instalar Izing con AAPANEL, según el tutorial de "Canal eConhecimento" en YouTube
 -------------------------------------------
 
-### ▶️ UBUNTU 22.04
+▶️ UBUNTU 22.04
 
-## ▶️ COMANDOS PARA PREPARAR E INSTALAR LO NECESARIO EN EL SERVIDOR
+#### ▶️ COMANDOS PARA PREPARAR E INSTALAR LO NECESARIO EN EL SERVIDOR
 
 ```
 timedatectl set-timezone America/Bogota && apt update && apt upgrade -y && apt install -y libgbm-dev wget unzip fontconfig locales gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils python2-minimal build-essential postgresql redis-server && add-apt-repository -y ppa:rabbitmq/rabbitmq-erlang && wget -qO - https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.deb.sh | sudo bash && apt install -y rabbitmq-server && rabbitmq-plugins enable rabbitmq_management && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && apt install -y ./google-chrome-stable_current_amd64.deb && rm -rf google-chrome-stable_current_amd64.deb && wget -O install.sh http://www.aapanel.com/script/install-ubuntu_6.0_en.sh && bash install.sh aapanel && rm -rf install.sh && reboot
@@ -13,56 +13,71 @@ timedatectl set-timezone America/Bogota && apt update && apt upgrade -y && apt i
 
 ❗❗❗ La máquina se reiniciará.
 
-## ▶️ ENTRAR A AAPANEL PARA CONFIGURARLO + POSTGRESQL + REDIS + RABBITMQ.
+#### ▶️ ENTRAR A AAPANEL PARA CONFIGURARLO + POSTGRESQL + REDIS + RABBITMQ.
 
-### 🔹 Después de instalar Nginx 1.21 y hacer las configuraciones en "Settings", instalar:
+###### 🔹 Después de instalar Nginx 1.21 y hacer las configuraciones en "Settings", instalar:
 
 - PM2 Manager
 - RabbitMQ
 - Postgres
 - Redis
 
-### 🔹 Instalar versión 14.21.1 de Node.
-### 🔹 Configurar versión 14.21.1 de Node en PM2 Manager.
+###### 🔹 Instalar versión 14.21.1 de Node.
+###### 🔹 Configurar versión 14.21.1 de Node en PM2 Manager.
 
-### 🔹 Ir a la configuración del Firewall del Sistema y abrir los puertos:
+###### 🔹 Ir a la configuración del Firewall del Sistema y abrir los puertos:
 > 5432 (PostgreSQL)
 > 6379 (Redis)
 > 5672 (RabbitMQ)
 > 8081 (Proxy Backend)
 
-### 🔹 Editar archivos:
+###### 🔹 Editar archivos:
 ➥ /etc/postgresql/14/main/postgresql.conf
 
-Modificar esta línea:
+###### Modificar esta línea:
+```
 #listen_addresses = 'localhost'
-Así👇
+```
+
+###### Así👇
+```
 listen_addresses = '*'
+```
+###### Ahora, dentro de
 
 ➥ /etc/postgresql/14/main/pg_hba.conf
-Modificar esta línea:
+
+###### Modificar esta línea:
+```
 host all all 127.0.0.1/32
-Así👇
+```
+###### Así👇
+```
 host all all 0.0.0.0/0
+```
+###### Dentro de ➥ /etc/redis/redis.conf
 
-➥ /etc/redis/redis.conf
-
-Modificar esta línea:
+###### Modificar esta línea:
+```
 #requirepass [Acá va la contraseña]
-Así👇
-requirepass 24861937
+```
 
-🔹 Configurar PostgreSQL en el Terminal:
+###### Así👇
+```
+requirepass {Contraseña que quieras}
+```
 
-> sudo -u postgres psql
-> ALTER USER postgres PASSWORD '{Contraseña para PostgreSQL}';
-> \q
+###### 🔹 Configurar PostgreSQL en el Terminal:
+
+- sudo -u postgres psql
+- ALTER USER postgres PASSWORD '{Contraseña para PostgreSQL}';
+- \q
 
 Luego:
 
-> sudo -u postgres psql
-> CREATE DATABASE izing;
-> \q
+- sudo -u postgres psql
+- CREATE DATABASE izing;
+- \q
 
 🔹 Configurar RabbitMQ en el Terminal:
 rabbitmqctl add_user admin 123456
