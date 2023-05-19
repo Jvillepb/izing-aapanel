@@ -15,76 +15,85 @@ timedatectl set-timezone America/Bogota && apt update && apt upgrade -y && apt i
 
 #### ▶️ ENTRAR A AAPANEL PARA CONFIGURARLO + POSTGRESQL + REDIS + RABBITMQ.
 
-###### 🔹 Después de instalar Nginx 1.21 y hacer las configuraciones en "Settings", instalar:
+##### 🔹 Después de instalar Nginx 1.21 y hacer las configuraciones en "Settings", instalar:
 
 - PM2 Manager
 - RabbitMQ
 - Postgres
 - Redis
 
-###### 🔹 Instalar versión 14.21.1 de Node.
-###### 🔹 Configurar versión 14.21.1 de Node en PM2 Manager.
+##### 🔹 Instalar versión 14.21.1 de Node.
+##### 🔹 Configurar versión 14.21.1 de Node en PM2 Manager.
 
-###### 🔹 Ir a la configuración del Firewall del Sistema y abrir los puertos:
+##### 🔹 Ir a la configuración del Firewall del Sistema y abrir los puertos:
 > 5432 (PostgreSQL)
 > 6379 (Redis)
 > 5672 (RabbitMQ)
 > 8081 (Proxy Backend)
 
-###### 🔹 Editar archivos:
+##### 🔹 Editar archivos:
 ➥ /etc/postgresql/14/main/postgresql.conf
 
-###### Modificar esta línea:
+##### Modificar esta línea:
 ```
 #listen_addresses = 'localhost'
 ```
 
-###### Así👇
+##### Así👇
 ```
 listen_addresses = '*'
 ```
-###### Ahora, dentro de
+##### Ahora, dentro de
 
 ➥ /etc/postgresql/14/main/pg_hba.conf
 
-###### Modificar esta línea:
+##### Modificar esta línea:
 ```
 host all all 127.0.0.1/32
 ```
-###### Así👇
+##### Así👇
 ```
 host all all 0.0.0.0/0
 ```
-###### Dentro de ➥ /etc/redis/redis.conf
+##### Dentro de ➥ /etc/redis/redis.conf
 
-###### Modificar esta línea:
+##### Modificar esta línea:
 ```
 #requirepass [Acá va la contraseña]
 ```
 
-###### Así👇
+##### Así👇
 ```
 requirepass {Contraseña que quieras}
 ```
 
-###### 🔹 Configurar PostgreSQL en el Terminal:
+##### 🔹 Configurar PostgreSQL en el Terminal:
+#### Entrar a psql
 ```
 sudo -u postgres psql
 ```
-
+##### Crear usuario postgres y su contraseña
 ```
 ALTER USER postgres PASSWORD '{Contraseña para PostgreSQL}';
 ```
-
+##### Salir
 ```
 \q
 ```
 ##### Para salir de Postgres, también puedes usar "Ctrl + D"
-Luego:
 
-- sudo -u postgres psql
-- CREATE DATABASE izing;
-- \q
+##### Luego volver a entrar:
+```
+sudo -u postgres psql
+```
+##### Crear base de datos "izing"
+```
+CREATE DATABASE izing;
+```
+##### Salir
+```
+\q
+```
 
 🔹 Configurar RabbitMQ en el Terminal:
 rabbitmqctl add_user admin 123456
